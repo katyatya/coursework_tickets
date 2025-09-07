@@ -16,3 +16,6 @@ class User(Base):
     
     # Relationship to posts through association table
     posts = relationship("Post", secondary="posts_users", back_populates="users")
+    
+    # Relationship to comments
+    comments = relationship("Comment", back_populates="user")

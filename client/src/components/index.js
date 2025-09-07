@@ -7,3 +7,5 @@ export * from './SideBlock'
 export * from './Header'
 
 export * from './EmptyState'
+
+export * from './Comments'

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Post } from '../components/Post'
+import { Post, Comments } from '../components'
 import { useParams } from 'react-router-dom'
 import axios from '../axios'
 import parse from 'html-react-parser'
@@ -69,13 +69,14 @@ export const FullPost = () => {
 						ticketsAvailable={data.tickets_available}
 						ticketsBooked={data.tickets_booked}
 						isAvailable={data.is_available}
-						isBookedByUser={data.is_booked_by_user}
 					>
 						{plainText}
 					</Post>
+					
+					{/* Компонент комментариев */}
+					<Comments postId={data.post_id} />
 				</div>
 			</div>
-			\
 		</>
 	)
 }

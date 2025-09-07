@@ -18,6 +18,9 @@ class Post(Base):
     
     # Relationship to users through association table
     users = relationship("User", secondary="posts_users", back_populates="posts")
+    
+    # Relationship to comments
+    comments = relationship("Comment", back_populates="post", cascade="all, delete-orphan")
 
 
 # Association table for many-to-many relationship between users and posts

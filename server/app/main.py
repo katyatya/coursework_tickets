@@ -3,12 +3,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from app.core.config import settings
 from app.database import engine
-from app.models import User, Post
-from app.api.v1 import auth_router, posts_router
+from app.models import User, Post, Comment
+from app.api.v1 import auth_router, posts_router, comments_router
 
 # Create database tables
 User.metadata.create_all(bind=engine)
 Post.metadata.create_all(bind=engine)
+Comment.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title=settings.project_name,
@@ -46,6 +47,7 @@ app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 # Include routers
 app.include_router(auth_router, prefix="/auth", tags=["auth"])
 app.include_router(posts_router, prefix="/posts", tags=["posts"])
+app.include_router(comments_router, prefix="/comments", tags=["comments"])
 
 # Root endpoint
 @app.get("/")
